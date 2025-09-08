@@ -80184,16 +80184,8 @@ function getAnalysisHistory() {
   const historyString = localStorage.getItem(STORAGE_KEY);
   return historyString ? JSON.parse(historyString) : [];
 }
-function clearAnalysisHistory() {
-  localStorage.removeItem(STORAGE_KEY);
-  console.log("Historial de análisis limpiado.");
-}
 function exportHistory() {
   const history = getAnalysisHistory();
-  if (history.length === 0) {
-    alert("No hay historial para exportar.");
-    return;
-  }
   const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(history, null, 2));
   const downloadAnchorNode = document.createElement("a");
   downloadAnchorNode.setAttribute("href", dataStr);
@@ -80201,6 +80193,9 @@ function exportHistory() {
   document.body.appendChild(downloadAnchorNode);
   downloadAnchorNode.click();
   downloadAnchorNode.remove();
+}
+function clearHistory() {
+  localStorage.removeItem(STORAGE_KEY);
 }
 document.addEventListener("DOMContentLoaded", async () => {
   const loadingOverlay = document.getElementById("loading-overlay");
@@ -80218,9 +80213,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     clearResults();
     loadingOverlay.classList.remove("hidden");
     document.getElementById("results-section").classList.remove("hidden");
-    const canvas = document.getElementById("object-detection-canvas");
-    canvas.width = image2.naturalWidth;
-    canvas.height = image2.naturalHeight;
     const [classificationResults, detectionResults] = await Promise.all([
       classifyImage(image2),
       detectObjects(image2)
@@ -80241,8 +80233,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     exportHistory();
   });
   document.getElementById("clear-history-btn").addEventListener("click", () => {
-    if (confirm("¿Estás seguro de que quieres limpiar todo el historial de análisis?")) {
-      clearAnalysisHistory();
+    if (confirm("¿Estás seguro de que quieres borrar todo el historial?")) {
+      clearHistory();
       renderHistory();
     }
   });
@@ -80250,21 +80242,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     const history = getAnalysisHistory();
     const historyList = document.getElementById("history-list");
     historyList.innerHTML = "";
-    if (history.length === 0) {
+    history.forEach((item, index) => {
       const li = document.createElement("li");
-      li.textContent = "No hay historial de análisis.";
+      li.innerHTML = `
+                <p>Análisis #${index + 1} (${new Date(item.date).toLocaleDateString()})</p>
+                <small>Clasificación: ${item.classification[0].className} (${(item.classification[0].probability * 100).toFixed(2)}%)</small>
+            `;
       historyList.appendChild(li);
-    } else {
-      history.forEach((item, index) => {
-        const li = document.createElement("li");
-        const classificationText = item.classification && item.classification.length > 0 ? `${item.classification[0].className} (${(item.classification[0].probability * 100).toFixed(2)}%)` : "N/A";
-        li.innerHTML = `
-                    <p>Análisis #${index + 1} (${new Date(item.date).toLocaleDateString()})</p>
-                    <small>Clasificación: ${classificationText}</small>
-                `;
-        historyList.appendChild(li);
-      });
-    }
+    });
   }
   renderHistory();
 });

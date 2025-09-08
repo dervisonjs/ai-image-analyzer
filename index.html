@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Image Analyzer</title>
-  <script type="module" crossorigin src="/ai-image-analyzer/assets/index-CsmhjreQ.js"></script>
-  <link rel="stylesheet" crossorigin href="/ai-image-analyzer/assets/index-BVbvOf9V.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script type="module" crossorigin src="/ai-image-analyzer/assets/index-BMOSg01B.js"></script>
+  <link rel="stylesheet" crossorigin href="/ai-image-analyzer/assets/index-BbYZ2JTR.css">
 </head>
 <body>
     <header>
@@ -17,6 +18,7 @@
         <section class="upload-section">
             <h2>Sube una Imagen</h2>
             <div id="drop-area" class="drop-area">
+                <i class="fas fa-cloud-upload-alt upload-icon"></i>
                 <p>Arrastra y suelta una imagen aquí, o haz clic para seleccionarla.</p>
                 <input type="file" id="fileElem" accept="image/*" style="display: none;">
             </div>
@@ -46,7 +48,7 @@
             <h2>Comentarios y Análisis de Sentimientos</h2>
             <div class="comment-input">
                 <textarea id="comment-box" placeholder="Escribe un comentario sobre la imagen..."></textarea>
-                <button id="submit-comment-btn">Enviar</button>
+                <button id="submit-comment-btn"><i class="fas fa-paper-plane"></i> Enviar</button>
             </div>
             <div id="comment-list" class="comment-list"></div>
         </section>
@@ -54,8 +56,10 @@
         <section id="history-section" class="history-section">
             <h2>Historial de Análisis</h2>
             <ul id="history-list"></ul>
-            <div class="history-actions"> <button id="export-btn" class="button">Exportar Resultados</button>
-                <button id="clear-history-btn" class="button button-danger">Limpiar Historial</button> </div>
+            <div class="history-actions">
+                <button id="export-btn"><i class="fas fa-download"></i> Exportar Resultados</button>
+                <button id="clear-history-btn"><i class="fas fa-trash"></i> Borrar Historial</button>
+            </div>
         </section>
     </main>
 
