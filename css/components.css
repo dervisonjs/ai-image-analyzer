@@ -1,0 +1,125 @@
+/* Botones */
+button {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+button:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(100, 255, 218, 0.2);
+}
+
+button i {
+    font-size: 1.1em;
+}
+
+/* Área de subida de archivos */
+.drop-area {
+    border: 2px dashed var(--accent-color);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: rgba(16, 33, 65, 0.5);
+    backdrop-filter: blur(10px);
+}
+
+.drop-area:hover {
+    background: rgba(16, 33, 65, 0.7);
+    transform: translateY(-2px);
+}
+
+.drop-area.active {
+    background-color: rgba(100, 255, 218, 0.1);
+    border-color: var(--hover-color);
+}
+
+.upload-icon {
+    font-size: 3em;
+    color: var(--accent-color);
+    margin-bottom: 15px;
+}
+
+/* Secciones de contenido */
+.results-section, .comments-section, .history-section {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+/* Comentarios */
+.comment-input textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: rgba(16, 33, 65, 0.5);
+    color: var(--text-color);
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+.comment-list {
+    margin-top: 20px;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+    background: rgba(10, 25, 47, 0.9);
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    padding: 20px;
+}
+
+.spinner {
+    border: 4px solid rgba(100, 255, 218, 0.1);
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Historial */
+.history-list li {
+    background: rgba(16, 33, 65, 0.5);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.history-list li:hover {
+    transform: translateX(5px);
+    background: rgba(16, 33, 65, 0.7);
+}
+
+#clear-history-btn {
+    background-color: transparent;
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+}
+
+#clear-history-btn:hover {
+    background-color: rgba(255, 77, 77, 0.1);
+}

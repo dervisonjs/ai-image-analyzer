@@ -1,0 +1,90 @@
+:root {
+    --primary-color: #00bcd4;
+    --secondary-color: #2196f3;
+    --background-color: #0a192f;
+    --card-background: rgba(16, 33, 65, 0.9);
+    --text-color: #e6f1ff;
+    --border-color: #1e3a8a;
+    --accent-color: #64ffda;
+    --hover-color: #00e5ff;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--background-color);
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(100, 255, 218, 0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(0, 188, 212, 0.1) 0%, transparent 20%),
+        linear-gradient(135deg, rgba(16, 33, 65, 0.8) 0%, rgba(10, 25, 47, 0.9) 100%);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background-attachment: fixed;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .upload-section {
+        grid-column: span 2;
+    }
+}
+
+/* Estilos de los componentes (detalles en components.css) */
+.drop-area {
+    border: 2px dashed var(--border-color);
+    border-radius: 8px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.drop-area.active {
+    background-color: #e8f5e9;
+    border-color: var(--primary-color);
+}
+
+.results-section, .comments-section, .history-section {
+    background-color: var(--card-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.hidden {
+    display: none;
+}
+
+.history-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#clear-history-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#clear-history-btn:hover {
+    background-color: #c82333;
+}
